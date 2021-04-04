@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <system>
+            <children>
+                <tools>
+                    <children>
+                        <fballiano_imagecleaner>
+                            <title>Image Cleaner</title>
+                            <action>adminhtml/fbimagecleaner</action>
+                        </fballiano_imagecleaner>
+                    </children>
+                </tools>
+            </children>
+        </system>
+    </menu>
+</config>
