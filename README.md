@@ -1,5 +1,16 @@
 # The best image cleaner for Magento 1.x and OpenMage
 
+Why the need for yet another image cleaner
+---------
+Because I couldn't find any (actively supported) module with all the features I needed
+
+Features
+---------
+- Identify and remove orphan category images (reading data from the default "image" attribute and any other custom attribute of type "image").
+- Identify and remove orphan product images (reading data from media_gallery)
+- Check before delete: you can review the identified images before removing them
+- Compatible with Magento 1.9 and OpenMage 20.0 on PHP 7.2, 7.3, 7.4
+
 Backup!!!
 ---------
 Backup your database and files before launching the cleaning process!!!
