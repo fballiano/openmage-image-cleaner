@@ -1,1 +1,1 @@
-# magento1-image-cleaner
+# The best image cleaner for Magento 1.x and OpenMage
