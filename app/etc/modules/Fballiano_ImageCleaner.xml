@@ -3,7 +3,7 @@
     <modules>
         <Fballiano_ImageCleaner>
             <active>true</active>
-            <codePool>local</codePool>
+            <codePool>community</codePool>
         </Fballiano_ImageCleaner>
     </modules>
 </config>
