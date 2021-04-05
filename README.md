@@ -2,14 +2,14 @@
 
 Why the need for yet another image cleaner?
 ---------
-Because I couldn't find any with all the features I needed.
+Simply because I couldn't find any with all the features I needed (category images, custom attributes, modern PHP versions).
 
 Features
 ---------
 - Identify and remove orphan **category images** (reading data from the default "image" attribute and **all custom attributes** of type "image").
 - Identify and remove orphan **product images** (reading data from media_gallery)
 - Check before delete: you can review the identified images before removing them
-- Compatible with Magento 1.9 and O**penMage 20.0 on PHP 7.2, 7.3, 7.4**
+- Compatible with **Magento 1.9 and OpenMage 20.0 on PHP 7.2, 7.3, 7.4**
 
 Backup!!!
 ---------
