@@ -56,6 +56,7 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
             'options' => array(
                 3 => $this->__('Category'),
                 4 => $this->__('Product'),
+                98 => $this->__('WYSIWYG'),
             )
         ));
 
@@ -99,7 +100,6 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
     {
         $this->setMassactionIdField('image_id');
         $this->getMassactionBlock()->setFormFieldName('ids');
-        // $this->getMassactionBlock()->setUseSelectAll(false);
         $this->getMassactionBlock()->addItem('delete', array(
             'label' => $this->__('Delete'),
             'url' => $this->getUrl('*/*/massDelete'),

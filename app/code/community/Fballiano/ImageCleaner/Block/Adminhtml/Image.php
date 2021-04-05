@@ -35,16 +35,21 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Image extends Mage_Adminhtml_Block_
         $this->_addButton(
             'sync_category', array(
                 'label' => Mage::helper('fballiano_imagecleaner')->__('Sync Category Images'),
-                'onclick' => "setLocation('{$this->getUrl('*/*/synccategory')}')",
-                'class' => 'add'
+                'onclick' => "setLocation('{$this->getUrl('*/*/synccategory')}')"
             )
         );
 
         $this->_addButton(
             'sync_product', array(
                 'label' => Mage::helper('fballiano_imagecleaner')->__('Sync Product Images'),
-                'onclick' => "setLocation('{$this->getUrl('*/*/syncproduct')}')",
-                'class' => 'add'
+                'onclick' => "setLocation('{$this->getUrl('*/*/syncproduct')}')"
+            )
+        );
+
+        $this->_addButton(
+            'sync_wysiwyg', array(
+                'label' => Mage::helper('fballiano_imagecleaner')->__('Sync WYSIWYG'),
+                'onclick' => "setLocation('{$this->getUrl('*/*/syncwysiwyg')}')"
             )
         );
     }

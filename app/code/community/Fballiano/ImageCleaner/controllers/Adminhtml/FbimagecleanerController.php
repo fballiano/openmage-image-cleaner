@@ -26,7 +26,7 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
     {
         return Mage::getSingleton('admin/session')->isAllowed('admin/system/tools/fballiano_imagecleaner');
     }
-    
+
     public function indexAction()
     {
         $this->_title("Image Cleaner");
@@ -89,6 +89,45 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
 
         $unused_images = array_diff($fs_images, $db_images, $media_gallery);
         if ($unused_images) {
+            $cleaner_table = $resource->getTableName('fb_imagecleaner_image');
+            $already_seen_images = $db->fetchCol("SELECT path FROM {$cleaner_table} WHERE entity_type_id={$entity_type_id}");
+            $unused_images = array_diff($unused_images, $already_seen_images);
+            if ($unused_images) {
+                foreach ($unused_images as $unused_image) {
+                    $db->insert($cleaner_table, array(
+                        'entity_type_id' => $entity_type_id,
+                        'path' => $unused_image
+                    ));
+                }
+            }
+        }
+
+        $this->_redirect('*/*');
+    }
+
+    public function syncwysiwygAction()
+    {
+        $entity_type_id = 98;
+        $media_dir = Mage::getBaseDir('media') . '/wysiwyg';
+        $resource = Mage::getSingleton('core/resource');
+        $db = $resource->getConnection('core_read');
+
+        $db_images = $db->fetchCol("SELECT content FROM {$resource->getTableName('cms_page')} UNION SELECT content FROM {$resource->getTableName('cms_block')}");
+        $fs_images = Mage::helper('fballiano_imagecleaner')->scandirRecursive($media_dir);
+        $fs_images = str_replace(Mage::getBaseDir() . '/', '', $fs_images);
+
+        $unused_images = array();
+        foreach ($fs_images as $fs_image) {
+            foreach ($db_images as $db_image) {
+                if (stripos($db_image, $fs_image) === false) {
+                    $unused_images[] = $fs_image;
+                    continue 2;
+                }
+            }
+        }
+
+        if ($unused_images) {
+            $unused_images = str_replace('media/wysiwyg/', '', $unused_images);
             $cleaner_table = $resource->getTableName('fb_imagecleaner_image');
             $already_seen_images = $db->fetchCol("SELECT path FROM {$cleaner_table} WHERE entity_type_id={$entity_type_id}");
             $unused_images = array_diff($unused_images, $already_seen_images);
