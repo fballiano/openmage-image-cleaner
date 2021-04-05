@@ -1,6 +1,6 @@
 # The best image cleaner for Magento 1.x and OpenMage
 
-Why the need for yet another image cleaner
+Why the need for yet another image cleaner?
 ---------
 Because I couldn't find any (actively supported) module with all the features I needed
 
