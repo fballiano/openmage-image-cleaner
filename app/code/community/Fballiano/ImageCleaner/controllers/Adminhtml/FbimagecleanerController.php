@@ -22,6 +22,11 @@
  */
 class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adminhtml_Controller_Action
 {
+    public function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('admin/system/tools/fballiano_imagecleaner');
+    }
+    
     public function indexAction()
     {
         $this->_title("Image Cleaner");
