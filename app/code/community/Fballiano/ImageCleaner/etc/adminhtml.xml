@@ -14,4 +14,23 @@
             </children>
         </system>
     </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <tools>
+                                <children>
+                                    <fballiano_imagecleaner>
+                                        <title>Image Cleaner</title>
+                                    </fballiano_imagecleaner>
+                                </children>
+                            </tools>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
 </config>
