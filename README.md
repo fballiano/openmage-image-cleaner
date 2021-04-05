@@ -2,7 +2,7 @@
 
 Why the need for yet another image cleaner?
 ---------
-Because I couldn't find any (actively supported) module with all the features I needed
+Because I couldn't find any with all the features I needed.
 
 Features
 ---------
