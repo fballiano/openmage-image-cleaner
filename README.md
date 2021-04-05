@@ -11,6 +11,16 @@ Features
 - Check before delete: you can review the identified images before removing them
 - Compatible with **Magento 1.9 and OpenMage 20.0 on PHP 7.2, 7.3, 7.4**
 
+How to use it
+-------------
+- Install via composer (`composer require fballiano/magento1-image-cleaner`), 
+  modman (`modman clone https://github.com/fballiano/magento-full-catalog-translate`)
+  or any other way you like
+- Navigate to backend's "System -> Tools -> Image Cleaner" section
+- Click "Sync category images" and/or "Sync product images"
+- The grid will show all the images that are detected as orphans
+- Delete them (check the backup section!) one by one or with a mass action
+
 Backup!!!
 ---------
 Backup your database and files before launching the cleaning process!!!
