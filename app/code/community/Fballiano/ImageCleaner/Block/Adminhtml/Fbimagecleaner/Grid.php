@@ -111,6 +111,7 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
         $this->getMassactionBlock()->addItem('delete', array(
             'label' => $this->__('Delete'),
             'url' => $this->getUrl('*/*/massDelete'),
+            'confirm' => $this->__('Are you sure?')
         ));
         return $this;
     }
