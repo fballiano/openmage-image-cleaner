@@ -133,7 +133,7 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
             $unused_images = array_diff($unused_images, $already_seen_images);
             if ($unused_images) {
                 foreach ($unused_images as $unused_image) {
-                    $db->insert($cleaner_table, array(
+                    $db->insertIgnore($cleaner_table, array(
                         'entity_type_id' => $entity_type_id,
                         'path' => $unused_image
                     ));
