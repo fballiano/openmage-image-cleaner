@@ -59,10 +59,18 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
                 98 => $this->__('WYSIWYG'),
             )
         ));
+        
+        $this->addColumn('filename', array(
+            'header' => $this->__('File Name'),
+            'type' => 'text',
+            'index' => 'path',
+            'sortable' => false
+        ));
 
         $this->addColumn('image', array(
             'header' => $this->__('Image'),
             'type' => 'text',
+            'width' => '250px',
             'align'=> 'center',
             'index' => 'path',
             'sortable' => false,
