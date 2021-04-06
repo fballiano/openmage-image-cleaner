@@ -111,23 +111,32 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $media_dir = Mage::getBaseDir('media') . '/wysiwyg';
         $resource = Mage::getSingleton('core/resource');
         $db = $resource->getConnection('core_read');
+        $helper = Mage::helper('fballiano_imagecleaner');
 
-        $db_images = $db->fetchCol("SELECT content FROM {$resource->getTableName('cms_page')} UNION SELECT content FROM {$resource->getTableName('cms_block')}");
-        $fs_images = Mage::helper('fballiano_imagecleaner')->scandirRecursive($media_dir);
-        $fs_images = str_replace(Mage::getBaseDir() . '/', '', $fs_images);
+        $db_images = $db->fetchCol("SELECT content FROM {$resource->getTableName('cms_page')} UNION SELECT content FROM {$resource->getTableName('cms_block')} UNION SELECT template_text FROM {$resource->getTableName('core_email_template')} UNION SELECT template_styles FROM {$resource->getTableName('core_email_template')}");
+        $css_files = $helper->getAllCSSFilesContents();
+        $fs_images = $helper->scandirRecursive($media_dir);
+        $fs_images = str_replace(Mage::getBaseDir() . '/media/', '', $fs_images);
 
-        $unused_images = array();
+        $used_images = array();
         foreach ($fs_images as $fs_image) {
             foreach ($db_images as $db_image) {
-                if (stripos($db_image, $fs_image) === false) {
-                    $unused_images[] = $fs_image;
-                    continue 2;
+                if (stripos($db_image, $fs_image) !== false) {
+                    $used_images[] = $fs_image;
+                    break;
+                }
+            }
+            foreach ($css_files as $css_file) {
+                if (stripos($css_file, $fs_image) !== false) {
+                    $used_images[] = $fs_image;
+                    break;
                 }
             }
         }
 
+        $unused_images = array_diff($fs_images, $used_images);
         if ($unused_images) {
-            $unused_images = str_replace('media/wysiwyg/', '', $unused_images);
+            $unused_images = str_replace('wysiwyg/', '', $unused_images);
             $cleaner_table = $resource->getTableName('fb_imagecleaner_image');
             $already_seen_images = $db->fetchCol("SELECT path FROM {$cleaner_table} WHERE entity_type_id={$entity_type_id}");
             $unused_images = array_diff($unused_images, $already_seen_images);

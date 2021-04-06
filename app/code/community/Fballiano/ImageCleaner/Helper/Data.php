@@ -50,4 +50,32 @@ class Fballiano_ImageCleaner_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $media_dir;
     }
+
+    public function getAllCSSFilesContents()
+    {
+        $files = $this->getAllCSSFiles(Mage::getBaseDir('skin') . '/frontend');
+        foreach ($files as $k=>$css_file_path) {
+            $files[$k] = file_get_contents($css_file_path);
+        }
+
+        return $files;
+    }
+
+    public function getAllCSSFiles($dir)
+    {
+        $root = scandir($dir);
+        foreach ($root as $value) {
+            if ($value === '.' or $value === '..') continue;
+            if (substr($value, -4) === '.css' and is_file("$dir/$value")) {
+                $result[] = "$dir/$value";
+                continue;
+            }
+
+            foreach ($this->getAllCSSFiles("$dir/$value") as $value) {
+                $result[] = $value;
+            }
+        }
+
+        return $result;
+    }
 }
