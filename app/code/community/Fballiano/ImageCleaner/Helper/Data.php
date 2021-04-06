@@ -27,7 +27,7 @@ class Fballiano_ImageCleaner_Helper_Data extends Mage_Core_Helper_Abstract
         $result = array();
         $root = scandir($dir);
         foreach ($root as $value) {
-            if ($value === '.' or $value === '..' or $value === 'cache' or $value === 'watermark' or $value === 'optimized') continue;
+            if ($value === '.' or $value === '..' or $value === 'cache' or $value === 'watermark' or $value === 'optimized' or $value === '.thumbs') continue;
             if (is_file("$dir/$value")) {
                 $result[] = "$dir/$value";
                 continue;
