@@ -29,7 +29,7 @@ CREATE TABLE `{$this->getTable( 'fb_imagecleaner_image' )}` (
 	`image_id` int unsigned AUTO_INCREMENT,
 	`entity_type_id` smallint (5) unsigned NOT NULL,
 	`path` varchar(255) NOT NULL,
-	PRIMARY KEY (`id`),
+	PRIMARY KEY (`image_id`),
 	UNIQUE KEY `entity_type_id` (`entity_type_id`,`path`)
 );");
 $installer->endSetup();
