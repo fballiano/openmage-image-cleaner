@@ -37,6 +37,6 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Image exten
                 break;
         }
 
-        return "<a href='{$url}{$row->getPath()}' target='_blank'<img src='{$url}{$row->getPath()}' style='max-width: 200px' /></a>";
+        return "<a href='{$url}{$row->getPath()}' target='_blank'><img src='{$url}{$row->getPath()}' style='max-width: 200px' /></a>";
     }
 }
