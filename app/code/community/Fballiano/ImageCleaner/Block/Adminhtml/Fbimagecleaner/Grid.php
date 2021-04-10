@@ -78,6 +78,7 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
         ));
 
         $this->addColumn('actions', array(
+            'header' => $this->__('Actions'),
             'type' => 'action',
             'align'=> 'center',
             'filter' => false,
