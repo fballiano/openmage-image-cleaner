@@ -63,6 +63,7 @@ class Fballiano_ImageCleaner_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function getAllCSSFiles($dir)
     {
+        $result = array();
         $root = scandir($dir);
         foreach ($root as $value) {
             if ($value === '.' or $value === '..') continue;
@@ -71,11 +72,12 @@ class Fballiano_ImageCleaner_Helper_Data extends Mage_Core_Helper_Abstract
                 continue;
             }
 
-            foreach ($this->getAllCSSFiles("$dir/$value") as $value) {
-                $result[] = $value;
+            if (is_dir("$dir/$value")) {
+                foreach ($this->getAllCSSFiles("$dir/$value") as $value) {
+                    $result[] = $value;
+                }
             }
         }
-
         return $result;
     }
 }
