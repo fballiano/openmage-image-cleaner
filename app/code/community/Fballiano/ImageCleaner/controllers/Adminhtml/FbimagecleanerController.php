@@ -208,4 +208,18 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
 
         $this->_redirect('*/*');
     }
+
+    public function exportCsvAction()
+    {
+        $fileName   = 'unused_images.csv';
+        $grid       = $this->getLayout()->createBlock('fballiano_imagecleaner/adminhtml_fbimagecleaner_grid');
+        $this->_prepareDownloadResponse($fileName, $grid->getCsvFile());
+    }
+
+    public function exportExcelAction()
+    {
+        $fileName   = 'unused_images.xml';
+        $grid       = $this->getLayout()->createBlock('fballiano_imagecleaner/adminhtml_fbimagecleaner_grid');
+        $this->_prepareDownloadResponse($fileName, $grid->getExcelFile($fileName));
+    }
 }
