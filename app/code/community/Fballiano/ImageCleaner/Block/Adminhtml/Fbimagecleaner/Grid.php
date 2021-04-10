@@ -74,15 +74,17 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
             'align'=> 'center',
             'index' => 'path',
             'sortable' => false,
+            'is_system' => true,
             'renderer' => 'Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Image',
         ));
 
-        $this->addColumn('action_delete', array(
+        $this->addColumn('actions', array(
             'header' => $this->__('Actions'),
             'width' => '180px',
             'align'=> 'center',
             'filter' => false,
             'sortable' => false,
+            'is_system' => true,
             'renderer' => 'Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Actions',
         ));
 
