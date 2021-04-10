@@ -209,6 +209,22 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $this->_redirect('*/*');
     }
 
+    public function downloadAction()
+    {
+        $image_id = $this->getRequest()->getParam('image_id');
+        if (is_numeric($image_id)) {
+            $resource = Mage::getSingleton('core/resource');
+            $db = $resource->getConnection('core_read');
+            $cleaner_table = $resource->getTableName('fb_imagecleaner_image');
+            $image = $db->fetchRow("SELECT * FROM {$cleaner_table} WHERE image_id=?", $image_id);
+            if ($image) {
+                $helper = Mage::helper('fballiano_imagecleaner');
+                $image_path = $helper->getMediaDirByEntityTypeId($image['entity_type_id']) . $image["path"];
+                $this->_prepareDownloadResponse(basename($image_path), $image_path);
+            }
+        }
+    }
+
     public function exportCsvAction()
     {
         $fileName   = 'unused_images.csv';

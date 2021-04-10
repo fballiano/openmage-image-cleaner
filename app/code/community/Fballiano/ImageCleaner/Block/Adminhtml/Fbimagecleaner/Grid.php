@@ -77,7 +77,7 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
             'renderer' => 'Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Image',
         ));
 
-        $this->addColumn('actions', array(
+        $this->addColumn('action_delete', array(
             'header' => $this->__('Actions'),
             'type' => 'action',
             'align'=> 'center',
@@ -90,6 +90,22 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
                     'url' => array('base' => '*/*/delete'),
                     'field' => 'image_id',
                     'confirm' => $this->__('Are you sure?')
+                )
+            ),
+        ));
+
+        $this->addColumn('action_download', array(
+            'header' => $this->__('Action'),
+            'type' => 'action',
+            'align'=> 'center',
+            'filter' => false,
+            'sortable' => false,
+            'index' => 'image_id',
+            'actions' => array(
+                array(
+                    'caption' => $this->__('Download'),
+                    'url' => array('base' => '*/*/download'),
+                    'field' => 'image_id'
                 )
             ),
         ));
