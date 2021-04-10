@@ -42,6 +42,12 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $resource = Mage::getSingleton('core/resource');
         $db = $resource->getConnection('core_read');
 
+        if (!file_exists($media_dir) || !is_dir($media_dir)) {
+            Mage::getSingleton('adminhtml/session')->addError($this->__('"media/catalog/category" folder does not exist.'));
+            $this->_redirect('*/*');
+            return;
+        }
+
         $attributes = $db->fetchCol("SELECT attribute_id FROM {$resource->getTableName('eav_attribute')} WHERE entity_type_id={$entity_type_id} AND frontend_input='image'");
         $attributes = implode(",", $attributes);
         $db_images = $db->fetchCol("SELECT value FROM {$resource->getTableName('catalog_category_entity_varchar')} WHERE value IS NOT NULL AND LENGTH(value)>0 AND entity_type_id={$entity_type_id} AND attribute_id IN ($attributes)");
@@ -75,6 +81,12 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $media_dir = Mage::getBaseDir('media') . '/catalog/product';
         $resource = Mage::getSingleton('core/resource');
         $db = $resource->getConnection('core_read');
+
+        if (!file_exists($media_dir) || !is_dir($media_dir)) {
+            Mage::getSingleton('adminhtml/session')->addError($this->__('"media/catalog/product" folder does not exist.'));
+            $this->_redirect('*/*');
+            return;
+        }
 
         $attributes = $db->fetchCol("SELECT attribute_id FROM {$resource->getTableName('eav_attribute')} WHERE entity_type_id={$entity_type_id} AND frontend_input='media_image'");
         $attributes = implode(",", $attributes);
@@ -112,6 +124,12 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $resource = Mage::getSingleton('core/resource');
         $db = $resource->getConnection('core_read');
         $helper = Mage::helper('fballiano_imagecleaner');
+
+        if (!file_exists($media_dir) || !is_dir($media_dir)) {
+            Mage::getSingleton('adminhtml/session')->addError($this->__('"media/wysiwyg" folder does not exist.'));
+            $this->_redirect('*/*');
+            return;
+        }
 
         $db_images = $db->fetchCol("SELECT content FROM {$resource->getTableName('cms_page')} UNION SELECT content FROM {$resource->getTableName('cms_block')} UNION SELECT template_text FROM {$resource->getTableName('core_email_template')} UNION SELECT template_styles FROM {$resource->getTableName('core_email_template')}");
         $css_files = $helper->getAllCSSFilesContents();
