@@ -220,7 +220,7 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
             if ($image) {
                 $helper = Mage::helper('fballiano_imagecleaner');
                 $image_path = $helper->getMediaDirByEntityTypeId($image['entity_type_id']) . $image["path"];
-                $this->_prepareDownloadResponse(basename($image_path), $image_path);
+                $this->_prepareDownloadResponse(basename($image_path), file_get_contents($image_path));
             }
         }
     }

@@ -79,35 +79,11 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
 
         $this->addColumn('action_delete', array(
             'header' => $this->__('Actions'),
-            'type' => 'action',
+            'width' => '180px',
             'align'=> 'center',
             'filter' => false,
             'sortable' => false,
-            'index' => 'image_id',
-            'actions' => array(
-                array(
-                    'caption' => $this->__('Delete'),
-                    'url' => array('base' => '*/*/delete'),
-                    'field' => 'image_id',
-                    'confirm' => $this->__('Are you sure?')
-                )
-            ),
-        ));
-
-        $this->addColumn('action_download', array(
-            'header' => $this->__('Action'),
-            'type' => 'action',
-            'align'=> 'center',
-            'filter' => false,
-            'sortable' => false,
-            'index' => 'image_id',
-            'actions' => array(
-                array(
-                    'caption' => $this->__('Download'),
-                    'url' => array('base' => '*/*/download'),
-                    'field' => 'image_id'
-                )
-            ),
+            'renderer' => 'Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Actions',
         ));
 
         $this->addExportType('*/*/exportCsv', $this->__('CSV'));
