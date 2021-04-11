@@ -182,7 +182,16 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
             if ($image) {
                 $helper = Mage::helper('fballiano_imagecleaner');
                 $image_path = $helper->getMediaDirByEntityTypeId($image['entity_type_id']) . $image["path"];
-                if (unlink($image_path)) $db->query("DELETE FROM {$cleaner_table} WHERE image_id=?", $image_id);
+                if (!file_exists($image_path)) {
+                    $db->query("DELETE FROM {$cleaner_table} WHERE image_id=?", $image_id);
+                    $this->_redirect('*/*');
+                    return;
+                }
+                if (unlink($image_path)) {
+                    $db->query("DELETE FROM {$cleaner_table} WHERE image_id=?", $image_id);
+                } else {
+                    Mage::getSingleton('adminhtml/session')->addError($this->__('It was not possible to delete one or more files from the filesystem.'));
+                }
             }
         }
 
@@ -192,6 +201,7 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
     public function massDeleteAction()
     {
         $ids = $this->getRequest()->getParam('ids');
+        $error_message_thrown = false;
         if ($ids) {
             $resource = Mage::getSingleton('core/resource');
             $db = $resource->getConnection('core_read');
@@ -201,7 +211,16 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
                 $image = $db->fetchRow("SELECT * FROM {$cleaner_table} WHERE image_id=?", $image_id);
                 if ($image) {
                     $image_path = $helper->getMediaDirByEntityTypeId($image['entity_type_id']) . $image["path"];
-                    if (unlink($image_path)) $db->query("DELETE FROM {$cleaner_table} WHERE image_id=?", $image_id);
+                    if (!file_exists($image_path)) {
+                        $db->query("DELETE FROM {$cleaner_table} WHERE image_id=?", $image_id);
+                        continue;
+                    }
+                    if (unlink($image_path)) {
+                        $db->query("DELETE FROM {$cleaner_table} WHERE image_id=?", $image_id);
+                    } elseif (!$error_message_thrown) {
+                        $error_message_thrown = true;
+                        Mage::getSingleton('adminhtml/session')->addError($this->__('It was not possible to delete one or more files from the filesystem.'));
+                    }
                 }
             }
         }
@@ -220,6 +239,13 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
             if ($image) {
                 $helper = Mage::helper('fballiano_imagecleaner');
                 $image_path = $helper->getMediaDirByEntityTypeId($image['entity_type_id']) . $image["path"];
+                if (!file_exists($image_path)) {
+                    $db->query("DELETE FROM {$cleaner_table} WHERE image_id=?", $image_id);
+                    Mage::getSingleton('adminhtml/session')->addError($this->__('Image not found.'));
+                    $this->_redirect('*/*');
+                    return;
+                }
+
                 $this->_prepareDownloadResponse(basename($image_path), file_get_contents($image_path));
             }
         }
