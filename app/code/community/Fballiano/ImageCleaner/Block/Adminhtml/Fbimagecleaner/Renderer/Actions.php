@@ -33,8 +33,9 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Actions ext
         );
 
         $links[] = sprintf(
-            '<a href="%s">%s</a>',
+            '<a href="%s" onclick="return confirm(\'%s\')">%s</a>',
             $this->getUrl('*/*/delete', array('image_id' => $row->getId())),
+            $this->__('Are you sure?'),
             $this->__('Delete')
         );
 
