@@ -73,6 +73,7 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
             'width' => '250px',
             'align'=> 'center',
             'index' => 'path',
+            'filter' => false,
             'sortable' => false,
             'is_system' => true,
             'renderer' => 'Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Image',
