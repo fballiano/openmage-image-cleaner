@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <admin>
+            <groups>
+                <fb_image_cleaner translate="label">
+                    <tab>advanced</tab>
+                    <label>Image Cleaner</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <sort_order>90</sort_order>
+                    <fields>
+                        <thumbnail_max_width translate="label comment">
+                            <label>Thumbnail size</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Used in the admin preview grid</comment>
+                        </thumbnail_max_width>
+                    </fields>
+                </fb_image_cleaner>
+            </groups>
+        </admin>
+    </sections>
+</config>

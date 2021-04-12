@@ -25,6 +25,7 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Image exten
     public function render(Varien_Object $row)
     {
         $url = Mage::getBaseUrl('media');
+        $max_width = Mage::getStoreConfig('admin/fb_image_cleaner/thumbnail_max_width');
         switch ($row->getEntityTypeId()) {
             case 3:
                 $url .= "catalog/category/";
@@ -37,6 +38,6 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Image exten
                 break;
         }
 
-        return "<a href='{$url}{$row->getPath()}' target='_blank'><img src='{$url}{$row->getPath()}' style='max-width: 200px' /></a>";
+        return "<a href='{$url}{$row->getPath()}' target='_blank'><img src='{$url}{$row->getPath()}' style='max-width:{$max_width}px' /></a>";
     }
 }

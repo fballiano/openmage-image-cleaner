@@ -43,10 +43,18 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <fballiano_imagecleaner  after="Mage_Adminhtml">Fballiano_ImageCleaner_Adminhtml</fballiano_imagecleaner>
+                        <fballiano_imagecleaner after="Mage_Adminhtml">Fballiano_ImageCleaner_Adminhtml
+                        </fballiano_imagecleaner>
                     </modules>
                 </args>
             </adminhtml>
         </routers>
     </admin>
+    <default>
+        <admin>
+            <fb_image_cleaner>
+                <thumbnail_max_width>200</thumbnail_max_width>
+            </fb_image_cleaner>
+        </admin>
+    </default>
 </config>
