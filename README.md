@@ -18,6 +18,9 @@ How to use it
 - The grid will show all the images that are detected as orphans
 - Delete them (check the backup section!) one by one or with a mass action
 
+If you want to change the default thumbnail size (in the image cleaner admin grid) please go to
+"System -> Configuration -> Advanced -> Admin -> Image Cleaner".
+
 Backup!!!
 ---------
 Backup your database and files before launching the cleaning process!!!
