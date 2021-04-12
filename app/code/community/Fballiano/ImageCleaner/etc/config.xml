@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Fballiano_ImageCleaner>
-            <version>0.5.3</version>
+            <version>0.6.0</version>
         </Fballiano_ImageCleaner>
     </modules>
     <global>
@@ -43,8 +43,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <fballiano_imagecleaner after="Mage_Adminhtml">Fballiano_ImageCleaner_Adminhtml
-                        </fballiano_imagecleaner>
+                        <fballiano_imagecleaner after="Mage_Adminhtml">Fballiano_ImageCleaner_Adminhtml</fballiano_imagecleaner>
                     </modules>
                 </args>
             </adminhtml>
