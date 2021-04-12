@@ -44,6 +44,7 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
             'header' => $this->__('ID'),
             'type' => 'text',
             'width' => '100px',
+            'align' => 'right',
             'index' => 'image_id'
         ));
 
@@ -51,7 +52,7 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
             'header' => $this->__('Entity Type'),
             'type' => 'options',
             'width' => '100px',
-            'align'=> 'center',
+            'align' => 'center',
             'index' => 'entity_type_id',
             'options' => array(
                 3 => $this->__('Category'),
@@ -82,7 +83,7 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
         $this->addColumn('actions', array(
             'header' => $this->__('Actions'),
             'width' => '180px',
-            'align'=> 'center',
+            'align' => 'center',
             'filter' => false,
             'sortable' => false,
             'is_system' => true,
