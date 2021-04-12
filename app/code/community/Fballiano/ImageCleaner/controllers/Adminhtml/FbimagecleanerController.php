@@ -52,10 +52,8 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $attributes = implode(",", $attributes);
         $db_images = $db->fetchCol("SELECT value FROM {$resource->getTableName('catalog_category_entity_varchar')} WHERE value IS NOT NULL AND LENGTH(value)>0 AND entity_type_id={$entity_type_id} AND attribute_id IN ($attributes)");
 
-        $fs_images = scandir($media_dir);
-        foreach ($fs_images as $k => $fs_image) {
-            if (!is_file("$media_dir/$fs_image")) unset($fs_images[$k]);
-        }
+        $fs_images = Mage::helper('fballiano_imagecleaner')->scandirRecursive($media_dir);
+        $fs_images = str_replace("{$media_dir}/", '', $fs_images);
 
         $unused_images = array_diff($fs_images, $db_images);
         if ($unused_images) {
@@ -263,5 +261,14 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $fileName   = 'unused_images.xml';
         $grid       = $this->getLayout()->createBlock('fballiano_imagecleaner/adminhtml_fbimagecleaner_grid');
         $this->_prepareDownloadResponse($fileName, $grid->getExcelFile($fileName));
+    }
+
+    public function resetAction()
+    {
+        $resource = Mage::getSingleton('core/resource');
+        $db = $resource->getConnection('core_read');
+        $cleaner_table = $resource->getTableName('fb_imagecleaner_image');
+        $db->query("TRUNCATE TABLE {$cleaner_table}");
+        $this->_redirect('*/*');
     }
 }

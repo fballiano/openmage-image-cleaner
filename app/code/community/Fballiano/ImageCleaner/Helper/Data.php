@@ -25,9 +25,11 @@ class Fballiano_ImageCleaner_Helper_Data extends Mage_Core_Helper_Abstract
     public function scandirRecursive($dir)
     {
         $result = array();
+        $blacklist_patterns = $this->getBlacklistedPatterns();
         $root = scandir($dir);
         foreach ($root as $value) {
             if ($value === '.' or $value === '..' or $value === 'cache' or $value === 'watermark' or $value === 'optimized' or $value === '.thumbs') continue;
+            if ($this->isBlacklisted("$dir/$value", $blacklist_patterns)) continue;
             if (is_file("$dir/$value")) {
                 $result[] = "$dir/$value";
                 continue;
@@ -79,5 +81,19 @@ class Fballiano_ImageCleaner_Helper_Data extends Mage_Core_Helper_Abstract
             }
         }
         return $result;
+    }
+
+    protected function getBlacklistedPatterns()
+    {
+        return preg_split('/\r\n|\r|\n/', Mage::getStoreConfig('admin/fb_image_cleaner/blacklist'));
+    }
+
+    public function isBlacklisted($path, $blacklisted_patterns)
+    {
+        foreach ($blacklisted_patterns as $blacklisted_pattern) {
+            if (fnmatch('*/' . $blacklisted_pattern, $path)) return true;
+        }
+
+        return false;
     }
 }

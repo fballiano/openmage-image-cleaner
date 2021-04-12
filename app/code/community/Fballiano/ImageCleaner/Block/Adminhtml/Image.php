@@ -52,6 +52,13 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Image extends Mage_Adminhtml_Block_
                 'onclick' => "setLocation('{$this->getUrl('*/*/syncwysiwyg')}')"
             )
         );
+
+        $this->_addButton(
+            'reset', array(
+                'label' => Mage::helper('fballiano_imagecleaner')->__('Reset'),
+                'onclick' => "setLocation('{$this->getUrl('*/*/reset')}')"
+            )
+        );
     }
 }
 
