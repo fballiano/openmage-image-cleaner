@@ -26,7 +26,6 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Image exten
     {
         $url = Mage::getBaseUrl('media');
         $max_width = Mage::getStoreConfig('admin/fb_image_cleaner/thumbnail_max_width');
-        $target = Mage::getStoreConfig('admin/fb_image_cleaner/how_to_open_image') == Fballiano_ImageCleaner_Helper_Data::OPEN_IMAGE_SAME_WINDOW ? '' : 'target=_blank';
 
         switch ($row->getEntityTypeId()) {
             case 3:
@@ -40,6 +39,12 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Image exten
                 break;
         }
 
-        return "<a href='{$url}{$row->getPath()}' {$target}><img src='{$url}{$row->getPath()}' style='max-width:{$max_width}px' /></a>";
+        $return = "<img src='{$url}{$row->getPath()}' style='max-width:{$max_width}px' />";
+        if (Mage::getStoreConfig('admin/fb_image_cleaner/enable_image_click')) {
+            $target = Mage::getStoreConfig('admin/fb_image_cleaner/how_to_open_image') == Fballiano_ImageCleaner_Helper_Data::OPEN_IMAGE_SAME_WINDOW ? '' : 'target=_blank';
+            $return = "<a href='{$url}{$row->getPath()}' {$target}>$return</a>";
+        }
+
+        return $return;
     }
 }
