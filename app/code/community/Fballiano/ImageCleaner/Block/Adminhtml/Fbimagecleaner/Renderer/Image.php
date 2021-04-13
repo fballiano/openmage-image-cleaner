@@ -41,8 +41,7 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Image exten
 
         $return = "<img src='{$url}{$row->getPath()}' style='max-width:{$max_width}px' />";
         if (Mage::getStoreConfig('admin/fb_image_cleaner/enable_image_click')) {
-            $target = Mage::getStoreConfig('admin/fb_image_cleaner/how_to_open_image') == Fballiano_ImageCleaner_Helper_Data::OPEN_IMAGE_SAME_WINDOW ? '' : 'target=_blank';
-            $return = "<a href='{$url}{$row->getPath()}' {$target}>$return</a>";
+            $return = "<a href='{$url}{$row->getPath()}' target=_blank>$return</a>";
         }
 
         return $return;

@@ -26,14 +26,6 @@
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                         </enable_image_click>
-                        <how_to_open_image translate="label">
-                            <label>Ho to open full size image</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>fballiano_imagecleaner/system_config_source_howtoopenimage</source_model>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </how_to_open_image>
                         <blacklist translate="label comment">
                             <frontend_type>textarea</frontend_type>
                             <label>Files/folders blacklist</label>

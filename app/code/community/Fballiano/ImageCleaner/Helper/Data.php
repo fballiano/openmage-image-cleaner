@@ -22,9 +22,6 @@
  */
 class Fballiano_ImageCleaner_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    const OPEN_IMAGE_SAME_WINDOW = 'same';
-    const OPEN_IMAGE_NEW_WINDOW = 'new';
-
     public function scandirRecursive($dir)
     {
         $result = array();

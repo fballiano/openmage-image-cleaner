@@ -54,7 +54,6 @@
             <fb_image_cleaner>
                 <thumbnail_max_width>200</thumbnail_max_width>
                 <enable_image_click>1</enable_image_click>
-                <how_to_open_image>new</how_to_open_image>
             </fb_image_cleaner>
         </admin>
     </default>
