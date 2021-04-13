@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Fballiano_ImageCleaner>
-            <version>0.6.0</version>
+            <version>0.6.1</version>
         </Fballiano_ImageCleaner>
     </modules>
     <global>
@@ -53,6 +53,7 @@
         <admin>
             <fb_image_cleaner>
                 <thumbnail_max_width>200</thumbnail_max_width>
+                <how_to_open_image>new</how_to_open_image>
             </fb_image_cleaner>
         </admin>
     </default>
