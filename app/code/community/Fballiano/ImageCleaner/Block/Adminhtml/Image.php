@@ -32,16 +32,16 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Image extends Mage_Adminhtml_Block_
         $this->_removeButton('add');
 
         $this->_addButton(
-            'sync_category', array(
-                'label' => Mage::helper('fballiano_imagecleaner')->__('Sync Category Images'),
-                'onclick' => "setLocation('{$this->getUrl('*/*/synccategory')}')"
+            'sync_product', array(
+                'label' => Mage::helper('fballiano_imagecleaner')->__('Sync Products'),
+                'onclick' => "setLocation('{$this->getUrl('*/*/syncproduct')}')"
             )
         );
 
         $this->_addButton(
-            'sync_product', array(
-                'label' => Mage::helper('fballiano_imagecleaner')->__('Sync Product Images'),
-                'onclick' => "setLocation('{$this->getUrl('*/*/syncproduct')}')"
+            'sync_category', array(
+                'label' => Mage::helper('fballiano_imagecleaner')->__('Sync Categories'),
+                'onclick' => "setLocation('{$this->getUrl('*/*/synccategory')}')"
             )
         );
 
@@ -61,7 +61,7 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Image extends Mage_Adminhtml_Block_
 
         $this->_addButton(
             'reset', array(
-                'label' => Mage::helper('fballiano_imagecleaner')->__('Reset'),
+                'label' => Mage::helper('fballiano_imagecleaner')->__('Reset IC Data'),
                 'onclick' => "setLocation('{$this->getUrl('*/*/reset')}')"
             )
         );
