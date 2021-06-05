@@ -27,7 +27,6 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Image extends Mage_Adminhtml_Block_
         $this->_blockGroup = 'fballiano_imagecleaner';
         $this->_controller = 'adminhtml_fbimagecleaner';
         $this->_headerText = $this->__('Image Cleaner');
-        // $this->_addButtonLabel  = $this->__('Add Button Label');
 
         parent::__construct();
         $this->_removeButton('add');
@@ -50,6 +49,13 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Image extends Mage_Adminhtml_Block_
             'sync_wysiwyg', array(
                 'label' => Mage::helper('fballiano_imagecleaner')->__('Sync WYSIWYG'),
                 'onclick' => "setLocation('{$this->getUrl('*/*/syncwysiwyg')}')"
+            )
+        );
+
+        $this->_addButton(
+            'flush_media_tmp', array(
+                'label' => Mage::helper('fballiano_imagecleaner')->__('Flush media/tmp'),
+                'onclick' => "setLocation('{$this->getUrl('*/*/flushmediatmp')}')"
             )
         );
 
