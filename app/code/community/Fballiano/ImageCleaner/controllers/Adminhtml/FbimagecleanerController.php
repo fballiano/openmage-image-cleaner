@@ -133,9 +133,13 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $css_files = $helper->getAllCSSFilesContents();
         $fs_images = $helper->scandirRecursive($media_dir);
         $fs_images = str_replace(Mage::getBaseDir() . '/media/', '', $fs_images);
+        $swatches_enabled = Mage::getStoreConfigFlag('configswatches/general/enabled');
 
         $used_images = array();
         foreach ($fs_images as $fs_image) {
+            if ($swatches_enabled and fnmatch('wysiwyg/swatches/*', $fs_image)) {
+                $used_images[] = $fs_image;
+            }
             foreach ($db_images as $db_image) {
                 if (stripos($db_image, $fs_image) !== false) {
                     $used_images[] = $fs_image;
