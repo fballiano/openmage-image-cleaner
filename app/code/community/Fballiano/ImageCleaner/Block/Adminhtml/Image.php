@@ -60,6 +60,13 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Image extends Mage_Adminhtml_Block_
         );
 
         $this->_addButton(
+            'flush_media_import', array(
+                'label' => Mage::helper('fballiano_imagecleaner')->__('Flush media/import'),
+                'onclick' => "setLocation('{$this->getUrl('*/*/flushmediaimport')}')"
+            )
+        );
+
+        $this->_addButton(
             'reset', array(
                 'label' => Mage::helper('fballiano_imagecleaner')->__('Reset IC Data'),
                 'onclick' => "setLocation('{$this->getUrl('*/*/reset')}')"
