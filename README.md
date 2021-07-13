@@ -7,7 +7,7 @@ Features
 - Identify and remove orphan **WYSIWYG images and files** (reading used images/files from cms_block, cms_page, core_email_template tables and all /skin/frontend CSS files).
 - Check before delete: you can review (and download) the identified images before removing them.
 - Possibility to **blacklist folders and/or files** (with wildcard support) not to ever identify them as orphans.
-- Possibility to flush media/import, media/tmp, var/export, var/importexport.
+- Possibility to **flush media/import, media/tmp, var/export, var/importexport**.
 - Compatible with **Magento 1.9 and OpenMage 20.0 on PHP 7.2, 7.3, 7.4**.
 
 How to use it
