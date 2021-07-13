@@ -266,6 +266,42 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $this->_redirect('*/*');
     }
 
+    public function flushvarexportAction()
+    {
+        $media_dir = Mage::getBaseDir('var') . '/export';
+        Varien_Io_File::rmdirRecursive($media_dir, true);
+        @mkdir($media_dir);
+
+        $helper = Mage::helper('fballiano_imagecleaner');
+        $leftover_files = $helper->scandirRecursive($media_dir);
+
+        if ($leftover_files) {
+            Mage::getSingleton('adminhtml/session')->addError($this->__('It was not possible to delete one or more files from the var/export folder.'));
+        } else {
+            Mage::getSingleton('adminhtml/session')->addSuccess($this->__('var/export was successfully flushed'));
+        }
+
+        $this->_redirect('*/*');
+    }
+
+    public function flushvarimportexportAction()
+    {
+        $media_dir = Mage::getBaseDir('var') . '/importexport';
+        Varien_Io_File::rmdirRecursive($media_dir, true);
+        @mkdir($media_dir);
+
+        $helper = Mage::helper('fballiano_imagecleaner');
+        $leftover_files = $helper->scandirRecursive($media_dir);
+
+        if ($leftover_files) {
+            Mage::getSingleton('adminhtml/session')->addError($this->__('It was not possible to delete one or more files from the var/importexport folder.'));
+        } else {
+            Mage::getSingleton('adminhtml/session')->addSuccess($this->__('var/importexport was successfully flushed'));
+        }
+
+        $this->_redirect('*/*');
+    }
+
     public function downloadAction()
     {
         $image_id = $this->getRequest()->getParam('image_id');

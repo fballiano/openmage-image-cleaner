@@ -67,6 +67,20 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Image extends Mage_Adminhtml_Block_
         );
 
         $this->_addButton(
+            'flush_var_export', array(
+                'label' => Mage::helper('fballiano_imagecleaner')->__('Flush var/export'),
+                'onclick' => "setLocation('{$this->getUrl('*/*/flushvarexport')}')"
+            )
+        );
+
+        $this->_addButton(
+            'flush_var_importexport', array(
+                'label' => Mage::helper('fballiano_imagecleaner')->__('Flush var/importexport'),
+                'onclick' => "setLocation('{$this->getUrl('*/*/flushvarimportexport')}')"
+            )
+        );
+
+        $this->_addButton(
             'reset', array(
                 'label' => Mage::helper('fballiano_imagecleaner')->__('Reset IC Data'),
                 'onclick' => "setLocation('{$this->getUrl('*/*/reset')}')"
