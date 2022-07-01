@@ -1,10 +1,10 @@
 {
-  "name": "fballiano/magento1-image-cleaner",
+  "name": "fballiano/openmage-image-cleaner",
   "license": "OSL-3.0",
   "type": "magento-module",
   "description": "Image cleaner module for Magento 1.9 and OpenMage",
   "keywords": ["magento", "magento1", "openmage"],
-  "homepage": "https://github.com/fballiano/magento1-image-cleaner",
+  "homepage": "https://github.com/fballiano/openmage-image-cleaner",
   "require": {
     "php": ">=7.2.0",
     "magento-hackathon/magento-composer-installer": "*"
