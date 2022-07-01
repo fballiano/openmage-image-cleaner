@@ -12,8 +12,8 @@ Features
 
 How to use it
 -------------
-- Install via composer (`composer require fballiano/magento1-image-cleaner`), 
-  modman (`modman clone https://github.com/fballiano/magento-full-catalog-translate`)
+- Install via composer (`composer require fballiano/openmage-image-cleaner`), 
+  modman (`modman clone https://github.com/fballiano/openmage-image-cleaner`)
   or any other way you like
 - Navigate to backend's "System -> Tools -> Image Cleaner" section
 - Click "Sync category images" and/or "Sync product images" or "Sync WYSIWYG"
