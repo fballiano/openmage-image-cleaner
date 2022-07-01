@@ -1,4 +1,4 @@
-# The best image cleaner for Magento 1.x and OpenMage
+# The best image cleaner for OpenMage (and Magento 1.9)
 
 Features
 ---------
