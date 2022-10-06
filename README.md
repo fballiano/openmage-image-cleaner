@@ -8,7 +8,7 @@ Features
 - Check before delete: you can review (and download) the identified images before removing them.
 - Possibility to **blacklist folders and/or files** (with wildcard support) not to ever identify them as orphans.
 - Possibility to **flush media/import, media/tmp, var/export, var/importexport**.
-- Compatible with **Magento 1.9, OpenMage 19 and OpenMage 20 on PHP 7.2, 7.3, 7.4, 8.0**.
+- Compatible with **Magento 1.9, OpenMage 19 and OpenMage 20 on PHP >= 7.4**.
 
 How to use it
 -------------
