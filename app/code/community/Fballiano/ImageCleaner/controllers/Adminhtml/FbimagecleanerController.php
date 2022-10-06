@@ -91,6 +91,13 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $db_images = $db->fetchCol("SELECT value FROM {$resource->getTableName('catalog_product_entity_varchar')} WHERE value IS NOT NULL AND LENGTH(value)>0 AND entity_type_id={$entity_type_id} AND attribute_id IN ($attributes) AND value <> 'no_selection'");
         if ($db_images) $db_images = substr_replace($db_images, '', 0, 1);
 
+        $placeholders = $db->fetchCol("SELECT DISTINCT value FROM {$resource->getTableName('core_config_data')} WHERE path LIKE 'catalog/placeholder/%_placeholder'");
+        if ($placeholders) {
+            foreach ($placeholders as $placeholder) {
+                $db_images[] = "placeholder/{$placeholder}";
+            }
+        }
+
         $media_gallery = $db->fetchCol("SELECT value FROM {$resource->getTableName('catalog_product_entity_media_gallery')} WHERE value IS NOT NULL AND LENGTH(value)>0");
         if ($media_gallery) $media_gallery = substr_replace($media_gallery, '', 0, 1);
 
