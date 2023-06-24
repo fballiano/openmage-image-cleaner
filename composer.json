@@ -2,7 +2,7 @@
   "name": "fballiano/openmage-image-cleaner",
   "license": "OSL-3.0",
   "type": "magento-module",
-  "description": "Image cleaner module for Magento 1.9 and OpenMage",
+  "description": "Image cleaner module for OpenMage (and Magento 1.9)",
   "keywords": [
     "magento",
     "magento1",
