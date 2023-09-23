@@ -48,7 +48,7 @@ class Fballiano_ImageCleaner_Helper_Data extends Mage_Core_Helper_Abstract
 
         if ($entity_type_id == 3) return "{$media_dir}catalog/category/";
         if ($entity_type_id == 4) return "{$media_dir}catalog/product/";
-        if ($entity_type_id == 98) return "{$media_dir}wysiwyg/";
+        if ($entity_type_id == -98) return "{$media_dir}wysiwyg/";
 
         return $media_dir;
     }

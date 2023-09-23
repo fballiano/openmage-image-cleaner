@@ -122,9 +122,57 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $this->_redirect('*/*');
     }
 
+    public function syncproductCacheAction()
+    {
+        $entity_type_id = -4;
+        $media_dir = Mage::getBaseDir('media') . '/catalog/product/cache';
+        $media_dir_nocache = Mage::getBaseDir('media') . '/catalog/product';
+        $resource = Mage::getSingleton('core/resource');
+        $db = $resource->getConnection('core_read');
+
+        if (!file_exists($media_dir) || !is_dir($media_dir)) {
+            Mage::getSingleton('adminhtml/session')->addError($this->__('"media/catalog/product/cache" folder does not exist.'));
+            $this->_redirect('*/*');
+            return;
+        }
+
+        $fs_images = Mage::helper('fballiano_imagecleaner')->scandirRecursive($media_dir);
+        $fs_images = str_replace("{$media_dir}/", '', $fs_images);
+
+        $unused_images = array();
+        foreach ($fs_images as $fs_image) {
+            if (strpos($fs_image, '/placeholder/') !== false) {
+                continue;
+            }
+
+            $fs_image_path_nocache = explode('/', $fs_image);
+            $fs_image_path_nocache = array_slice($fs_image_path_nocache, -3);
+            $fs_image_path_nocache = implode('/', $fs_image_path_nocache);
+            if (!file_exists("{$media_dir_nocache}/{$fs_image_path_nocache}")) {
+                $unused_images[] = $fs_image;
+            }
+        }
+
+        if ($unused_images) {
+            $cleaner_table = $resource->getTableName('fb_imagecleaner_image');
+            $already_seen_images = $db->fetchCol("SELECT path FROM {$cleaner_table} WHERE entity_type_id={$entity_type_id}");
+            $unused_images = array_diff($unused_images, $already_seen_images);
+            if ($unused_images) {
+                foreach ($unused_images as $unused_image) {
+                    $db->insert($cleaner_table, array(
+                        'entity_type_id' => $entity_type_id,
+                        'path' => $unused_image
+                    ));
+                }
+            }
+        }
+
+        $this->_redirect('*/*');
+    }
+
     public function syncwysiwygAction()
     {
-        $entity_type_id = 98;
+        $entity_type_id = -98;
         $media_dir = Mage::getBaseDir('media') . '/wysiwyg';
         $resource = Mage::getSingleton('core/resource');
         $db = $resource->getConnection('core_read');

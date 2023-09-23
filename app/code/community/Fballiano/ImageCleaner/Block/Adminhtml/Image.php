@@ -53,6 +53,13 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Image extends Mage_Adminhtml_Block_
         );
 
         $this->_addButton(
+            'sync_product_cache', array(
+                'label' => Mage::helper('fballiano_imagecleaner')->__('Sync Products Cache'),
+                'onclick' => "setLocation('{$this->getUrl('*/*/syncproductcache')}')"
+            )
+        );
+
+        $this->_addButton(
             'flush_media_tmp', array(
                 'label' => Mage::helper('fballiano_imagecleaner')->__('Flush media/tmp'),
                 'onclick' => "setLocation('{$this->getUrl('*/*/flushmediatmp')}')"

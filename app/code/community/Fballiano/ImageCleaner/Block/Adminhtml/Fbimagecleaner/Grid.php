@@ -57,7 +57,9 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
             'options' => array(
                 3 => $this->__('Category'),
                 4 => $this->__('Product'),
-                98 => $this->__('WYSIWYG'),
+                -3 => $this->__('Category Cache'),
+                -4 => $this->__('Product Cache'),
+                -98 => $this->__('WYSIWYG'),
             )
         ));
 

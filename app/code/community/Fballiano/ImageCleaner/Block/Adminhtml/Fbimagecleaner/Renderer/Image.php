@@ -34,7 +34,13 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Image exten
             case 4:
                 $url .= "catalog/product/";
                 break;
-            case 98:
+            case -3:
+                $url .= "catalog/category/cache/";
+                break;
+            case -4:
+                $url .= "catalog/product/cache/";
+                break;
+            case -98:
                 $url .= "wysiwyg/";
                 break;
         }

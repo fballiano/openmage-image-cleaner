@@ -3,7 +3,7 @@
 Features
 ---------
 - Identify and remove orphan **category images** (reading data from the default "image" attribute and **all custom attributes** of type "image").
-- Identify and remove orphan **product images** (reading data from media_gallery).
+- Identify and remove orphan **product images** (reading data from media_gallery) and **product images cache**.
 - Identify and remove orphan **WYSIWYG images and files** (reading used images/files from cms_block, cms_page, core_email_template tables and all /skin/frontend CSS files).
 - Check before delete: you can review (and download) the identified images before removing them.
 - Possibility to **blacklist folders and/or files** (with wildcard support) not to ever identify them as orphans.
