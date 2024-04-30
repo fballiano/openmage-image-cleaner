@@ -15,6 +15,5 @@
 $installer = $this;
 $installer->startSetup();
 $installer->run("
-TRUNCATE {$this->getTable('fb_imagecleaner_image')};
-ALTER TABLE `{$this->getTable( 'fb_imagecleaner_image' )}` MODIFY COLUMN `entity_type_id` SMALLINT SIGNED;");
+ALTER TABLE `{$this->getTable( 'fb_imagecleaner_image' )}` CONVERT TO CHARACTER SET utf8 COLLATE utf8_bin;");
 $installer->endSetup();
