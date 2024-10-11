@@ -186,7 +186,7 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
                 $used_images[] = $fs_image;
             }
             foreach ($db_images as $db_image) {
-                if (stripos($db_image, $fs_image) !== false) {
+                if (stripos($db_image ?? '', $fs_image) !== false) {
                     $used_images[] = $fs_image;
                     break;
                 }
