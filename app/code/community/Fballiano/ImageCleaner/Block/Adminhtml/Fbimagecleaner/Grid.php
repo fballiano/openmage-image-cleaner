@@ -45,10 +45,10 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Grid extends Mage_Ad
             'align' => 'center',
             'index' => 'entity_type_id',
             'options' => array(
-                3 => $this->__('Category'),
-                4 => $this->__('Product'),
-                -3 => $this->__('Category Cache'),
-                -4 => $this->__('Product Cache'),
+                Mage::getModel('catalog/category')->getResource()->getTypeId() => $this->__('Category'),
+                Mage::getModel('catalog/product')->getResource()->getTypeId() => $this->__('Product'),
+                -Mage::getModel('catalog/category')->getResource()->getTypeId() => $this->__('Category Cache'),
+                -Mage::getModel('catalog/product')->getResource()->getTypeId() => $this->__('Product Cache'),
                 -98 => $this->__('WYSIWYG'),
             )
         ));

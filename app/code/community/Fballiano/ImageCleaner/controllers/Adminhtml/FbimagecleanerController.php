@@ -27,7 +27,7 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
 
     public function synccategoryAction()
     {
-        $entity_type_id = 3;
+        $entity_type_id = Mage::getModel('catalog/category')->getResource()->getTypeId();
         $media_dir = Mage::getBaseDir('media') . '/catalog/category';
         $resource = Mage::getSingleton('core/resource');
         $db = $resource->getConnection('core_read');
@@ -65,7 +65,7 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
 
     public function syncproductAction()
     {
-        $entity_type_id = 4;
+        $entity_type_id = Mage::getModel('catalog/product')->getResource()->getTypeId();
         $media_dir = Mage::getBaseDir('media') . '/catalog/product';
         $resource = Mage::getSingleton('core/resource');
         $db = $resource->getConnection('core_read');
@@ -114,7 +114,7 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
 
     public function syncproductCacheAction()
     {
-        $entity_type_id = -4;
+        $entity_type_id = -Mage::getModel('catalog/product')->getResource()->getTypeId();
         $media_dir = Mage::getBaseDir('media') . '/catalog/product/cache';
         $media_dir_nocache = Mage::getBaseDir('media') . '/catalog/product';
         $resource = Mage::getSingleton('core/resource');

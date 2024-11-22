@@ -18,16 +18,16 @@ class Fballiano_ImageCleaner_Block_Adminhtml_Fbimagecleaner_Renderer_Image exten
         $max_width = Mage::getStoreConfig('admin/fb_image_cleaner/thumbnail_max_width');
 
         switch ($row->getEntityTypeId()) {
-            case 3:
+            case Mage::getModel('catalog/category')->getResource()->getTypeId():
                 $url .= "catalog/category/";
                 break;
-            case 4:
+            case Mage::getModel('catalog/product')->getResource()->getTypeId():
                 $url .= "catalog/product/";
                 break;
-            case -3:
+            case -Mage::getModel('catalog/category')->getResource()->getTypeId():
                 $url .= "catalog/category/cache/";
                 break;
-            case -4:
+            case -Mage::getModel('catalog/product')->getResource()->getTypeId():
                 $url .= "catalog/product/cache/";
                 break;
             case -98:
