@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Fballiano_ImageCleaner>
-            <version>1.5.0</version>
+            <version>1.5.1</version>
         </Fballiano_ImageCleaner>
     </modules>
     <global>
