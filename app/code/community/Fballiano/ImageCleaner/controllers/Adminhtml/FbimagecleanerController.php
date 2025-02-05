@@ -79,7 +79,7 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $attributes = $db->fetchCol("SELECT attribute_id FROM {$resource->getTableName('eav_attribute')} WHERE entity_type_id={$entity_type_id} AND frontend_input='media_image'");
         $attributes = implode(",", $attributes);
         $db_images = $db->fetchCol("SELECT value FROM {$resource->getTableName('catalog_product_entity_varchar')} WHERE value IS NOT NULL AND LENGTH(value)>0 AND entity_type_id={$entity_type_id} AND attribute_id IN ($attributes) AND value <> 'no_selection'");
-        if ($db_images) $db_images = substr_replace($db_images, '', 0, 1);
+        if ($db_images) $db_images = array_map([$this, 'removeLeadingSlash'], $db_images);
 
         $placeholders = $db->fetchCol("SELECT DISTINCT value FROM {$resource->getTableName('core_config_data')} WHERE path LIKE 'catalog/placeholder/%_placeholder'");
         if ($placeholders) {
@@ -89,7 +89,7 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         }
 
         $media_gallery = $db->fetchCol("SELECT value FROM {$resource->getTableName('catalog_product_entity_media_gallery')} WHERE value IS NOT NULL AND LENGTH(value)>0");
-        if ($media_gallery) $media_gallery = substr_replace($media_gallery, '', 0, 1);
+        if ($media_gallery) $media_gallery = array_map([$this, 'removeLeadingSlash'], $media_gallery);
 
         $fs_images = Mage::helper('fballiano_imagecleaner')->scandirRecursive($media_dir);
         $fs_images = str_replace("{$media_dir}/", '', $fs_images);
@@ -391,5 +391,10 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $cleaner_table = $resource->getTableName('fb_imagecleaner_image');
         $db->query("TRUNCATE TABLE {$cleaner_table}");
         $this->_redirect('*/*');
+    }
+
+    private function removeLeadingSlash($imagePath)
+    {
+        return ltrim($imagePath, '/');
     }
 }
