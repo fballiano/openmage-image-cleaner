@@ -1,4 +1,4 @@
-# The best image cleaner for OpenMage (and Magento 1.9)
+# The best image cleaner for Maho, OpenMage and Magento 1.9
 
 <table><tr><td align=center>
 <strong>If you find my work valuable, please consider sponsoring</strong><br />
@@ -15,7 +15,7 @@ Features
 - Check before delete: you can review (and download) the identified images before removing them.
 - Possibility to **blacklist folders and/or files** (with wildcard support) not to ever identify them as orphans.
 - Possibility to **flush media/import, media/tmp, var/export, var/importexport**.
-- Compatible with **Magento 1.9, OpenMage 19 and OpenMage 20 on PHP >= 7.4**.
+- Compatible with **Maho, Magento 1.9, OpenMage 19 and OpenMage 20 on PHP >= 7.4**.
 
 How to use it
 -------------
@@ -37,6 +37,11 @@ Backup!!!
 ---------
 Backup your database and files before launching the cleaning process!!!
 This module is provided "as is" and I'll not be responsible for any data damage.
+
+Technical documentation
+-----------------------
+
+Technical documentation is available on [https://deepwiki.com/fballiano/openmage-image-cleaner](https://deepwiki.com/fballiano/openmage-image-cleaner).
 
 Support
 -------
