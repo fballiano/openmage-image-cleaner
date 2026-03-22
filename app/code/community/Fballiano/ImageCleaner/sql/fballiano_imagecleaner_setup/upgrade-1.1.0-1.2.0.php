@@ -14,6 +14,12 @@
 /* @var $installer Mage_Core_Model_Resource_Setup */
 $installer = $this;
 $installer->startSetup();
-$installer->run("
-ALTER TABLE `{$this->getTable( 'fb_imagecleaner_image' )}` CONVERT TO CHARACTER SET utf8 COLLATE utf8_bin;");
+
+$connection = $installer->getConnection();
+$tableName = $installer->getTable('fb_imagecleaner_image');
+
+if ($connection instanceof Varien_Db_Adapter_Pdo_Mysql) {
+    $connection->query("ALTER TABLE `{$tableName}` CONVERT TO CHARACTER SET utf8 COLLATE utf8_bin");
+}
+
 $installer->endSetup();

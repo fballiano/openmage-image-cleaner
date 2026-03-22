@@ -14,13 +14,32 @@
 /* @var $installer Mage_Core_Model_Resource_Setup */
 $installer = $this;
 $installer->startSetup();
-$installer->run("
-DROP TABLE IF EXISTS {$this->getTable('fb_imagecleaner_image')};
-CREATE TABLE `{$this->getTable( 'fb_imagecleaner_image' )}` (
-	`image_id` int unsigned AUTO_INCREMENT,
-	`entity_type_id` smallint (5) unsigned NOT NULL,
-	`path` varchar(255) NOT NULL,
-	PRIMARY KEY (`image_id`),
-	UNIQUE KEY `entity_type_id` (`entity_type_id`,`path`)
-);");
+
+$connection = $installer->getConnection();
+$tableName = $installer->getTable('fb_imagecleaner_image');
+
+$connection->dropTable($tableName);
+
+$table = $connection
+    ->newTable($tableName)
+    ->addColumn('image_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, [
+        'identity' => true,
+        'unsigned' => true,
+        'nullable' => false,
+        'primary'  => true,
+    ], 'Image ID')
+    ->addColumn('entity_type_id', Varien_Db_Ddl_Table::TYPE_SMALLINT, null, [
+        'nullable' => false,
+    ], 'Entity Type ID')
+    ->addColumn('path', Varien_Db_Ddl_Table::TYPE_TEXT, 255, [
+        'nullable' => false,
+    ], 'Path')
+    ->addIndex(
+        $installer->getIdxName('fb_imagecleaner_image', ['entity_type_id', 'path'], Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE),
+        ['entity_type_id', 'path'],
+        ['type' => Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE]
+    );
+
+$connection->createTable($table);
+
 $installer->endSetup();

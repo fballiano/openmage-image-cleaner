@@ -14,7 +14,15 @@
 /* @var $installer Mage_Core_Model_Resource_Setup */
 $installer = $this;
 $installer->startSetup();
-$installer->run("
-TRUNCATE {$this->getTable('fb_imagecleaner_image')};
-ALTER TABLE `{$this->getTable( 'fb_imagecleaner_image' )}` MODIFY COLUMN `entity_type_id` SMALLINT SIGNED;");
+
+$connection = $installer->getConnection();
+$tableName = $installer->getTable('fb_imagecleaner_image');
+
+$connection->truncateTable($tableName);
+$connection->modifyColumn($tableName, 'entity_type_id', [
+    'type'     => Varien_Db_Ddl_Table::TYPE_SMALLINT,
+    'nullable' => false,
+    'comment'  => 'Entity Type ID',
+]);
+
 $installer->endSetup();

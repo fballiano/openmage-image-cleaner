@@ -389,7 +389,7 @@ class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adm
         $resource = Mage::getSingleton('core/resource');
         $db = $resource->getConnection('core_read');
         $cleaner_table = $resource->getTableName('fb_imagecleaner_image');
-        $db->query("TRUNCATE TABLE {$cleaner_table}");
+        $db->truncateTable($cleaner_table);
         $this->_redirect('*/*');
     }
 
