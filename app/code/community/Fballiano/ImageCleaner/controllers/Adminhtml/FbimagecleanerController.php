@@ -12,7 +12,7 @@
  */
 class Fballiano_ImageCleaner_Adminhtml_FbimagecleanerController extends Mage_Adminhtml_Controller_Action
 {
-    public function _isAllowed()
+    public function _isAllowed(): bool
     {
         return Mage::getSingleton('admin/session')->isAllowed('admin/system/tools/fballiano_imagecleaner');
     }
